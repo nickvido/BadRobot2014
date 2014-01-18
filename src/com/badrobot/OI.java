@@ -1,6 +1,7 @@
 
-package edu.wpi.first.wpilibj.templates;
+package com.badrobot;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
 
@@ -40,5 +41,22 @@ public class OI {
     // Start the command when the button is released  and let it run the command
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
+    
+    public static DriverStation driverStation;
+    
+    public static boolean CONSOLE_OUTPUT_ENABLED = true;
+    
+    public static XboxController primaryController, secondaryController;
+    
+    public void init()
+    {
+        driverStation = DriverStation.getInstance();
+        primaryController = new XboxController(RobotMap.driverStation_ControllerPort1);
+        secondaryController = new XboxController(RobotMap.driverStation_ControllerPort2);
+    }
+    
+    public static boolean getDigitalInput(int channel){
+        return driverStation.getDigitalIn(channel);
+    }
 }
 
